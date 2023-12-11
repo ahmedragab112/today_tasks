@@ -5,6 +5,11 @@ class HomeNote extends StatelessWidget {
   static const String routeName = 'homeNote';
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return  Scaffold(
+      appBar: AppBar(
+        title: Text('Today Tasks'),
+        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.search))],
+      ),
+    );
   }
 }
