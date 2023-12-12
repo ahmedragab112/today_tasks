@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notehive/theme/apptheme.dart';
+import 'package:notehive/views/details/details_view.dart';
 import 'package:notehive/views/home/home.dart';
 
 void main() {
@@ -17,7 +18,10 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      routes: {HomeNote.routeName: (context) => const HomeNote()},
+      routes: {
+        HomeNote.routeName: (context) => HomeNote(),
+        EditTaskView.routeName: (context) => EditTaskView()
+      },
     );
   }
 }
