@@ -8,7 +8,7 @@ class NoteView extends StatelessWidget {
   });
   final List<NoteModel> notes = [
     NoteModel(
-        color: Colors.red,
+        color: 1234214,
         title: 'test',
         descritpion: 'note',
         time: DateTime.now().toString())

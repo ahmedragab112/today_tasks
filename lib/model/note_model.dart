@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 part 'note_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class NoteModel extends HiveObject {
   @HiveField(0)
   final String title;
@@ -11,7 +10,7 @@ class NoteModel extends HiveObject {
   @HiveField(2)
   final String time;
   @HiveField(3)
-  final Color color;
+  final int color;
   NoteModel({
     required this.color,
     required this.title,

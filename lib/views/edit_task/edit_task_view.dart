@@ -4,7 +4,7 @@ import 'package:notehive/widgets/custom_textfiled.dart';
 
 class EditTaskView extends StatelessWidget {
   const EditTaskView({super.key});
-  static const String routeName = 'editTask';
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(

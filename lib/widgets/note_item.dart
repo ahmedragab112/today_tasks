@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notehive/model/note_model.dart';
-import 'package:notehive/views/edit_task/edit_task_view.dart';
+import 'package:notehive/router/routes.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
@@ -10,7 +10,7 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, EditTaskView.routeName);
+        Navigator.pushNamed(context, AppRoutes.editNote);
       },
       child: Card(
         elevation: 5,
@@ -23,7 +23,7 @@ class NoteItem extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 32, left: 24, right: 16),
           width: double.infinity,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: note.color),
+              borderRadius: BorderRadius.circular(16),color: Colors.red),
           child: Row(
             children: [
               Expanded(

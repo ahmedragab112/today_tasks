@@ -11,3 +11,7 @@ class AddNoteErrorState extends AddNoteState {
 }
 
 class AddNoteLoadingState extends AddNoteState {}
+
+class FormVlidate extends AddNoteState {}
+
+class FormNotVlidate extends AddNoteState {}

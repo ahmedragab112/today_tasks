@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:notehive/constant/constant.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notehive/model/note_model.dart';
+import 'package:notehive/observer.dart';
+import 'package:notehive/router/router.dart';
 import 'package:notehive/theme/apptheme.dart';
-import 'package:notehive/views/edit_task/edit_task_view.dart';
-import 'package:notehive/views/home/home.dart';
+
+import 'constant/constant.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(hiveBox);
+  Bloc.observer = MyBlocObserver();
   Hive.registerAdapter(NoteModelAdapter());
-  runApp(const MyApp());
+  await Hive.openBox<NoteModel>(hiveBox);
+  runApp(const TodayTasks());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TodayTasks extends StatelessWidget {
+  const TodayTasks({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeNote.routeName,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      routes: {
-        HomeNote.routeName: (context) => const HomeNote(),
-        EditTaskView.routeName: (context) => const EditTaskView()
-      },
+      onGenerateRoute: AppRouter.generatRoute,
     );
   }
 }
