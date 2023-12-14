@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:notehive/model/note_model.dart';
 import 'package:notehive/views/details/details_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.color});
-  final Color color;
+  const NoteItem({super.key, required this.note});
+
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -12,17 +14,16 @@ class NoteItem extends StatelessWidget {
       },
       child: Card(
         elevation: 5,
-        shadowColor: Colors.white,
-        margin: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 8),
+        shadowColor: Colors.black,
+        margin: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
         child: Container(
-          padding:
-              const EdgeInsets.only(top: 32, bottom: 32, left: 24, right: 16),
+          padding: const EdgeInsets.only(bottom: 32, left: 24, right: 16),
           width: double.infinity,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: color),
+              borderRadius: BorderRadius.circular(16), color: note.color),
           child: Row(
             children: [
               Expanded(
@@ -30,9 +31,9 @@ class NoteItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Flutter Tips',
-                      style: TextStyle(
+                    Text(
+                      note.title,
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
@@ -42,7 +43,7 @@ class NoteItem extends StatelessWidget {
                     ),
                     SizedBox(
                       child: Text(
-                        'Build your career with Ahmed ragab',
+                        note.descritpion,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: TextStyle(
@@ -60,19 +61,25 @@ class NoteItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
                     IconButton(
                       padding: const EdgeInsets.only(left: 20),
                       onPressed: () {},
                       icon: const Icon(
                         Icons.delete,
-                        color: Colors.red,
+                        color: Colors.black,
                         size: 30,
                       ),
                     ),
                     const SizedBox(
                       height: 40,
                     ),
-                    const Text('time : 10:10')
+                    Text(
+                      note.time.substring(0, 16),
+                      style: const TextStyle(fontSize: 10),
+                    )
                   ],
                 ),
               ),

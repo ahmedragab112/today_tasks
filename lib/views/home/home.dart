@@ -27,7 +27,7 @@ class HomeNote extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: const NoteView(),
+      body:  NoteView(),
     );
   }
 }

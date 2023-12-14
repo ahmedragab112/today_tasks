@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:notehive/constant/constant.dart';
 import 'package:notehive/theme/apptheme.dart';
 import 'package:notehive/views/details/details_view.dart';
 import 'package:notehive/views/home/home.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+await  Hive.openBox(hiveBox);
   runApp(const MyApp());
 }
 
