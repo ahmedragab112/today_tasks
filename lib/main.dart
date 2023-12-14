@@ -5,6 +5,7 @@ import 'package:notehive/model/note_model.dart';
 import 'package:notehive/observer.dart';
 import 'package:notehive/router/router.dart';
 import 'package:notehive/theme/apptheme.dart';
+import 'package:notehive/views/home/manager/read_notes_cubit.dart';
 
 import 'constant/constant.dart';
 
@@ -21,12 +22,15 @@ class TodayTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
-      onGenerateRoute: AppRouter.generatRoute,
+    return BlocProvider(
+      create: (context) => ReadNotesCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.dark,
+        onGenerateRoute: AppRouter.generatRoute,
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'package:notehive/constant/constant.dart';
 
@@ -14,7 +15,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title, description, time = DateTime.now().toString();
+  String? title, description, time = DateFormat.yMd().format(DateTime.now()).toString() ;
   addNote() async {
     emit(AddNoteLoadingState());
     try {

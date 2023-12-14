@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notehive/views/home/manager/add_note_cubit.dart';
+import 'package:notehive/views/home/manager/add_note_state.dart';
 
 import 'package:notehive/widgets/custom_button.dart';
 import 'package:notehive/widgets/custom_textfiled.dart';
@@ -9,7 +9,9 @@ import 'package:notehive/widgets/custom_textfiled.dart';
 class AddNoteForm extends StatelessWidget {
   const AddNoteForm({
     super.key,
+
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +44,16 @@ class AddNoteForm extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          CustomButton(
-              type: 'Add Task',
-              function: () {
-                bloc.checkForm();
-              }),
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+              return CustomButton(
+                  isLoading: state is AddNoteLoadingState ? true:false,
+                  type: 'Add Task',
+                  function: () {
+                    bloc.checkForm();
+                  });
+            },
+          ),
           const SizedBox(
             height: 20,
           ),

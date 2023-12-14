@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   final String type;
   final Function function;
+  final bool isLoading;
   const CustomButton({
     super.key,
     required this.type,
     required this.function,
+    this.isLoading = false,
   });
 
   @override
@@ -21,11 +23,21 @@ class CustomButton extends StatelessWidget {
         alignment: Alignment.center,
         width: double.infinity,
         height: 50,
-        child: Text(
-          type,
-          style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
+        child: isLoading == true
+            ? const SizedBox(
+                width: 30,
+                height: 30,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              )
+            : Text(
+                type,
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
       ),
     );
   }

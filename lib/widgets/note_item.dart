@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notehive/model/note_model.dart';
 import 'package:notehive/router/routes.dart';
+import 'package:notehive/views/home/manager/add_note_cubit.dart';
+import 'package:notehive/views/home/manager/read_notes_cubit.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
@@ -23,7 +26,8 @@ class NoteItem extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 32, left: 24, right: 16),
           width: double.infinity,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),color: Colors.red),
+              borderRadius: BorderRadius.circular(16),
+              color: Color(note.color)),
           child: Row(
             children: [
               Expanded(
@@ -56,7 +60,7 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 1,
+                flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +70,10 @@ class NoteItem extends StatelessWidget {
                     ),
                     IconButton(
                       padding: const EdgeInsets.only(left: 20),
-                      onPressed: () {},
+                      onPressed: () {
+                        note.delete();
+                        BlocProvider.of<ReadNotesCubit>(context).displayNotes();
+                      },
                       icon: const Icon(
                         Icons.delete,
                         color: Colors.black,
@@ -77,7 +84,7 @@ class NoteItem extends StatelessWidget {
                       height: 40,
                     ),
                     Text(
-                      note.time.substring(0, 16),
+                      note.time,
                       style: const TextStyle(fontSize: 10),
                     )
                   ],
