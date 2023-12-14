@@ -17,33 +17,71 @@ Future<dynamic> customBottomSheet(BuildContext context,
           top: 16,
           right: 8,
           left: 8),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomTextFiled(
-                hintText: 'enter task title',
-                type: 'title',
-                inputType: TextInputType.name,
-                controller: titleController),
-            const SizedBox(
-              height: 20,
-            ),
-            CustomTextFiled(
-                hintText: 'enter task description',
-                type: 'description',
-                maxLines: 5,
-                inputType: TextInputType.name,
-                controller: descriptionController),
-            const SizedBox(
-              height: 30,
-            ),
-            CustomButton(type: 'Add Task', function: () {}),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+      child: const SingleChildScrollView(
+        child: AddNoteView(),
       ),
     ),
   );
+}
+
+class AddNoteView extends StatefulWidget {
+  const AddNoteView({
+    super.key,
+  });
+
+  @override
+  State<AddNoteView> createState() => _AddNoteViewState();
+}
+
+class _AddNoteViewState extends State<AddNoteView> {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, description;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        children: [
+          CustomTextFiled(
+            hintText: 'enter task title',
+            type: 'title',
+            onSaved: (value) {
+              title = value;
+            },
+            inputType: TextInputType.name,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTextFiled(
+            hintText: 'enter task description',
+            type: 'description',
+            onSaved: (value) {
+              description = value;
+            },
+            maxLines: 5,
+            inputType: TextInputType.name,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          CustomButton(
+              type: 'Add Task',
+              function: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              }),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
+  }
 }

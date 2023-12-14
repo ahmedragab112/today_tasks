@@ -3,10 +3,9 @@ import 'package:notehive/helper/custom_bottom_sheet.dart';
 import 'package:notehive/views/home/notview.dart';
 
 class HomeNote extends StatelessWidget {
-  HomeNote({super.key});
+  const HomeNote({super.key});
   static const String routeName = 'homeNote';
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +21,12 @@ class HomeNote extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           customBottomSheet(context,
-              titleController: titleController,
-              descriptionController: descriptionController);
+              titleController: TextEditingController(),
+              descriptionController: TextEditingController());
         },
         child: const Icon(Icons.add),
       ),
-      body:  NoteView(),
+      body: NoteView(),
     );
   }
 }

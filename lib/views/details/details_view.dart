@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notehive/widgets/custom_textfiled.dart';
 
 class EditTaskView extends StatelessWidget {
-  EditTaskView({super.key});
+  const EditTaskView({super.key});
   static const String routeName = 'editTask';
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,27 +16,27 @@ class EditTaskView extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 50,
             ),
             CustomTextFiled(
-                hintText: 'edit title',
-                type: 'title',
-                inputType: TextInputType.name,
-                controller: titleController),
-            const SizedBox(
+              hintText: 'edit title',
+              type: 'title',
+              inputType: TextInputType.name,
+            ),
+            SizedBox(
               height: 50,
             ),
             CustomTextFiled(
-                maxLines: 5,
-                hintText: 'edit description',
-                type: 'description',
-                inputType: TextInputType.name,
-                controller: descriptionController)
+              maxLines: 5,
+              hintText: 'edit description',
+              type: 'description',
+              inputType: TextInputType.name,
+            )
           ],
         ),
       ),

@@ -6,21 +6,28 @@ class CustomTextFiled extends StatelessWidget {
       required this.hintText,
       required this.type,
       required this.inputType,
-      required this.controller, this.maxLines=1});
+      this.maxLines = 1,
+      this.onSaved});
   final String hintText;
   final String type;
-final int maxLines;
-  final TextEditingController controller;
+  final int maxLines;
+  final void Function(String?)? onSaved;
   final TextInputType inputType;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      maxLines:maxLines ,
-      controller: controller,
+    return TextFormField(
+      maxLines: maxLines,
+      onSaved: onSaved,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'the filed is required';
+        } else {
+          return null;
+        }
+      },
       style: const TextStyle(
         color: Colors.white,
       ),
-      
       decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.blue),
