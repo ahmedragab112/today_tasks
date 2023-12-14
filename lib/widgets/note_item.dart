@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notehive/model/note_model.dart';
-import 'package:notehive/views/details/details_view.dart';
+import 'package:notehive/views/edit_task/edit_task_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});

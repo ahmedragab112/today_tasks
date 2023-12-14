@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notehive/constant/constant.dart';
+import 'package:notehive/model/note_model.dart';
 import 'package:notehive/theme/apptheme.dart';
-import 'package:notehive/views/details/details_view.dart';
+import 'package:notehive/views/edit_task/edit_task_view.dart';
 import 'package:notehive/views/home/home.dart';
 
 void main() async {
   await Hive.initFlutter();
-await  Hive.openBox(hiveBox);
+  await Hive.openBox(hiveBox);
+  Hive.registerAdapter(NoteModelAdapter());
   runApp(const MyApp());
 }
 
@@ -23,8 +25,8 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       routes: {
-        HomeNote.routeName: (context) => HomeNote(),
-        EditTaskView.routeName: (context) => EditTaskView()
+        HomeNote.routeName: (context) => const HomeNote(),
+        EditTaskView.routeName: (context) => const EditTaskView()
       },
     );
   }
