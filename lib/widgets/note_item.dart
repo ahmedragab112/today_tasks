@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notehive/model/note_model.dart';
-import 'package:notehive/router/routes.dart';
-import 'package:notehive/views/home/manager/add_note_cubit.dart';
+import 'package:notehive/views/edit_task/edit_task_view.dart';
 import 'package:notehive/views/home/manager/read_notes_cubit.dart';
+
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
@@ -13,7 +13,13 @@ class NoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.editNote);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditTaskView(
+                note: note,
+              ),
+            ));
       },
       child: Card(
         elevation: 5,

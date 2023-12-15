@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFiled extends StatelessWidget {
-  const CustomTextFiled(
-      {super.key,
-      required this.hintText,
-      required this.type,
-      required this.inputType,
-      this.maxLines = 1,
-      this.onSaved});
+  const CustomTextFiled({
+    super.key,
+    required this.hintText,
+    required this.type,
+    this.maxLines = 1,
+    this.onSaved,this.onChanged
+  });
   final String hintText;
   final String type;
   final int maxLines;
   final void Function(String?)? onSaved;
-  final TextInputType inputType;
+  final void Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:onChanged,
       maxLines: maxLines,
       onSaved: onSaved,
       validator: (value) {
@@ -49,7 +51,6 @@ class CustomTextFiled extends StatelessWidget {
           ),
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.white)),
-      keyboardType: inputType,
     );
   }
 }

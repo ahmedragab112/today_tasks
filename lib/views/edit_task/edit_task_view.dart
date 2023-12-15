@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:notehive/widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notehive/model/note_model.dart';
+import 'package:notehive/views/home/manager/read_notes_cubit.dart';
 import 'package:notehive/widgets/custom_textfiled.dart';
 
-class EditTaskView extends StatelessWidget {
-  const EditTaskView({super.key});
- 
+class EditTaskView extends StatefulWidget {
+  const EditTaskView({super.key, required this.note});
+  final NoteModel note;
+
+  @override
+  State<EditTaskView> createState() => _EditTaskViewState();
+}
+
+class _EditTaskViewState extends State<EditTaskView> {
+  String? title, description;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,78 +21,51 @@ class EditTaskView extends StatelessWidget {
         title: const Text('Edit Task'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              widget.note.title = title ?? widget.note.title;
+              widget.note.descritpion = description ?? widget.note.descritpion;
+              widget.note.save().then((value) {
+                BlocProvider.of<ReadNotesCubit>(context).displayNotes();
+                Navigator.pop(context);
+              });
+            },
             icon: const Icon(Icons.check),
           ),
         ],
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: EditNoteViewBody(),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              CustomTextFiled(
+                hintText: 'edit title',
+                type: 'title',
+                onChanged: (value) {
+                  title = value;
+                },
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              CustomTextFiled(
+                maxLines: 5,
+                hintText: 'edit description',
+                type: 'description',
+                onChanged: (value) {
+                  description = value;
+                },
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+        
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class EditNoteViewBody extends StatefulWidget {
-  const EditNoteViewBody({
-    super.key,
-  });
-
-  @override
-  State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
-}
-
-class _EditNoteViewBodyState extends State<EditNoteViewBody> {
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  GlobalKey<FormState> formKey = GlobalKey();
-  String? title, description;
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          CustomTextFiled(
-            hintText: 'edit title',
-            onSaved: (value) {
-              title = value;
-            },
-            type: 'title',
-            inputType: TextInputType.name,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-          CustomTextFiled(
-            maxLines: 5,
-            hintText: 'edit description',
-            onSaved: (value) {
-              description = value;
-            },
-            type: 'description',
-            inputType: TextInputType.name,
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          CustomButton(
-              type: 'Save',
-              function: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
-              })
-        ],
       ),
     );
   }

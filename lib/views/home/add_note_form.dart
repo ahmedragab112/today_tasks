@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notehive/views/home/manager/add_note_cubit.dart';
 import 'package:notehive/views/home/manager/add_note_state.dart';
-
 import 'package:notehive/widgets/custom_button.dart';
 import 'package:notehive/widgets/custom_textfiled.dart';
-
 class AddNoteForm extends StatelessWidget {
   const AddNoteForm({
     super.key,
@@ -27,7 +25,7 @@ class AddNoteForm extends StatelessWidget {
             onSaved: (value) {
               bloc.title = value;
             },
-            inputType: TextInputType.name,
+        
           ),
           const SizedBox(
             height: 20,
@@ -39,7 +37,7 @@ class AddNoteForm extends StatelessWidget {
               bloc.description = value;
             },
             maxLines: 5,
-            inputType: TextInputType.name,
+          
           ),
           const SizedBox(
             height: 30,
