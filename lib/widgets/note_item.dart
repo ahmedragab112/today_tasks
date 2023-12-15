@@ -4,7 +4,6 @@ import 'package:notehive/model/note_model.dart';
 import 'package:notehive/views/edit_task/edit_task_view.dart';
 import 'package:notehive/views/home/manager/read_notes_cubit.dart';
 
-
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key, required this.note});
 
@@ -45,6 +44,7 @@ class NoteItem extends StatelessWidget {
                       note.title,
                       style: const TextStyle(
                         fontSize: 30,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -59,7 +59,7 @@ class NoteItem extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.normal,
-                            color: Colors.white.withOpacity(.7)),
+                            color: Colors.black.withOpacity(.7)),
                       ),
                     )
                   ],
@@ -82,7 +82,7 @@ class NoteItem extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.delete,
-                        color: Colors.black,
+                        color: Colors.red,
                         size: 30,
                       ),
                     ),
@@ -91,7 +91,10 @@ class NoteItem extends StatelessWidget {
                     ),
                     Text(
                       note.time,
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Colors.black,
+                      ),
                     )
                   ],
                 ),

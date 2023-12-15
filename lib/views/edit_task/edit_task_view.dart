@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notehive/model/note_model.dart';
-import 'package:notehive/views/home/manager/read_notes_cubit.dart';
-import 'package:notehive/widgets/custom_textfiled.dart';
+import '../../model/note_model.dart';
+import 'edit_note_colorlist.dart';
+import '../home/manager/read_notes_cubit.dart';
+import '../../widgets/custom_textfiled.dart';
 
 class EditTaskView extends StatefulWidget {
   const EditTaskView({super.key, required this.note});
@@ -60,8 +61,11 @@ class _EditTaskViewState extends State<EditTaskView> {
                 },
               ),
               const SizedBox(
-                height: 100,
+                height: 50,
               ),
+              EditNoteColorsList(
+                note: widget.note,
+              )
             ],
           ),
         ),
@@ -69,4 +73,3 @@ class _EditTaskViewState extends State<EditTaskView> {
     );
   }
 }
-

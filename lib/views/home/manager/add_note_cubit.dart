@@ -15,14 +15,17 @@ class AddNoteCubit extends Cubit<AddNoteState> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title, description, time = DateFormat.yMd().format(DateTime.now()).toString() ;
+  String? title,
+      description,
+      time = DateFormat.yMd().format(DateTime.now()).toString();
+  Color color = const Color(0xff9d701d); 
   addNote() async {
     emit(AddNoteLoadingState());
     try {
-      var notesBox = Hive.box<NoteModel>(hiveBox);
+      Box notesBox = Hive.box<NoteModel>(hiveBox);
 
       await notesBox.add(NoteModel(
-          color: Colors.blue.value,
+          color: color.value,
           title: title!,
           descritpion: description!,
           time: time!));

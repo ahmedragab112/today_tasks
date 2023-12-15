@@ -28,7 +28,7 @@ class _HomeNoteState extends State<HomeNote> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.notes_outlined),
           )
         ],
       ),

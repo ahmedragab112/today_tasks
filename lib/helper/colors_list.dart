@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notehive/constant/constant.dart';
+import 'package:notehive/views/home/manager/add_note_cubit.dart';
 
 class BuildColor extends StatelessWidget {
   const BuildColor({super.key, required this.selectColor, required this.color});
@@ -29,13 +32,7 @@ class ColorsListView extends StatefulWidget {
 
 class _ColorsListViewState extends State<ColorsListView> {
   int currentColor = 0;
-  List<Color> colors = const [
-    Color(0xff9d701d),
-    Color(0xffd7cccc),
-    Color(0xfff4deba),
-    Color(0xffdec299),
-    Color(0xff7f83fa)
-  ];
+ 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,6 +43,7 @@ class _ColorsListViewState extends State<ColorsListView> {
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             currentColor = index;
+            BlocProvider.of<AddNoteCubit>(context).color = colors[index];
             setState(() {});
           },
           child: BuildColor(
