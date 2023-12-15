@@ -62,7 +62,6 @@ class _EditTaskViewState extends State<EditTaskView> {
               const SizedBox(
                 height: 100,
               ),
-        
             ],
           ),
         ),
@@ -70,3 +69,4 @@ class _EditTaskViewState extends State<EditTaskView> {
     );
   }
 }
+
